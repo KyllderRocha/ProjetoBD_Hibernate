@@ -85,6 +85,7 @@ public class ClienteDAOTest {
 	    Cliente clienteDoBanco = dao.buscaPorId(idCliente);
 	    assertNotNull(clienteDoBanco);
 	    assertEquals("João Ferreira da Silva", clienteDoBanco.getNome());
+	    assertEquals(true, true);
 	}
 
 }

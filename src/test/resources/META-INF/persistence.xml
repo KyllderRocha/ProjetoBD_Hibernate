@@ -8,6 +8,16 @@
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		
 		<class>model.entity.Cliente</class>
+		<class>model.entity.Carteira</class>
+		<class>model.entity.ClienteFisico</class>
+		<class>model.entity.ClientePJ</class>
+		<class>model.entity.Dependente</class>
+		<class>model.entity.Endereco</class>
+		<class>model.entity.Fornecedor</class>
+		<class>model.entity.ItemPedido</class>
+		<class>model.entity.ItemPedidoPK</class>
+		<class>model.entity.Pedido</class>
+		<class>model.entity.Produto</class>
 		
 		<properties>
 		
@@ -15,7 +25,6 @@
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost/jpa" />
             <property name="javax.persistence.jdbc.user" value="postgres" />
-            <property name="javax.persistence.jdbc.password" value="ADMIN" />
         
         	<!-- Hibernate properties -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
@@ -27,6 +36,7 @@
 			<property name="hibernate.cache.user_query_cache" value="true"/>
 			<property name="hibernate.generate_statistics" value="true"/>
 			<property name="hibernate.hbm2ddl.auto" value="create"/>
+			<property name="javax.persistence.jdbc.password" value="ifpe"/>
 						     		
 		</properties>
 

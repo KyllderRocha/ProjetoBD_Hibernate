@@ -11,18 +11,16 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "PEDIDO_PRODUTO")
 public class ItemPedido {
-	
+		
 	@EmbeddedId
 	protected ItemPedidoPK itemPedidoPK;
 	
 	@ManyToOne
-    @MapsId("idProduto")
-    @JoinColumn(name = "PRODUTO_ID_PRODUTO")
+    @JoinColumn(name = "ID_PRODUTO", referencedColumnName = "ID_PRODUTO")
     private Produto produto;
 
 	@ManyToOne
-    @MapsId("idPedido")
-    @JoinColumn(name = "PEDIDO_ID_PEDIDO")
+    @JoinColumn(name = "ID_PEDIDO", referencedColumnName = "ID_PEDIDO")
     private Pedido pedido;
 
 	@Column(name = "QTD")
