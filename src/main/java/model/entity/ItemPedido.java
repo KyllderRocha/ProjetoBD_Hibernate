@@ -16,11 +16,13 @@ public class ItemPedido {
 	protected ItemPedidoPK itemPedidoPK;
 	
 	@ManyToOne
-    @JoinColumn(name = "ID_PRODUTO", referencedColumnName = "ID_PRODUTO")
+	@MapsId("idProduto")
+    @JoinColumn(name = "ID_PRODUTO")
     private Produto produto;
 
 	@ManyToOne
-    @JoinColumn(name = "ID_PEDIDO", referencedColumnName = "ID_PEDIDO")
+	@MapsId("idPedido")
+    @JoinColumn(name = "ID_PEDIDO")
     private Pedido pedido;
 
 	@Column(name = "QTD")

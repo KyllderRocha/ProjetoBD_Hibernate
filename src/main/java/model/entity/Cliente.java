@@ -35,9 +35,6 @@ public abstract class Cliente implements Serializable {
 	
 	@Column(name = "NOME", nullable = false, length = 255)
 	private String nome;
-
-	@Column(name = "TIPO", length = 20)
-	private String tipo;
 	
 	@Embedded
 	private Endereco enderecoCobranca;
@@ -72,14 +69,6 @@ public abstract class Cliente implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public String getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
 	}
 
 	public Endereco getEnderecoCobranca() {
