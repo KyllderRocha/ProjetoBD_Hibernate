@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -40,6 +41,9 @@ public class Produto {
 					referencedColumnName = "ID_FORNECEDOR")})
 	@ManyToMany
 	private Collection<Fornecedor> fornecedorCollection;
+	
+	@OneToMany(mappedBy = "produto")
+	private Collection<ItemPedido> itemPedidoCollection;
 
 	public Long getId() {
 		return id;

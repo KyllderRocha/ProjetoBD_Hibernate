@@ -36,7 +36,7 @@
 			<property name="hibernate.cache.user_query_cache" value="true"/>
 			<property name="hibernate.generate_statistics" value="true"/>
 			<property name="hibernate.hbm2ddl.auto" value="create"/>
-			<property name="javax.persistence.jdbc.password" value="ADMIN"/>
+			<property name="javax.persistence.jdbc.password" value="ifpe"/>
 						     		
 		</properties>
 

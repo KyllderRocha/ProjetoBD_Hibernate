@@ -3,6 +3,7 @@ package model.entity;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
@@ -14,16 +15,14 @@ public class ItemPedido {
 		
 	@EmbeddedId
 	protected ItemPedidoPK itemPedidoPK;
-	
-	@ManyToOne
-	@MapsId("idProduto")
-    @JoinColumn(name = "ID_PRODUTO")
-    private Produto produto;
+		
+	@JoinColumn(name = "ID_PRODUTO", referencedColumnName = "ID_PRODUTO")
+	@ManyToOne(optional = false , fetch = FetchType.EAGER)
+	private Produto produto;
 
-	@ManyToOne
-	@MapsId("idPedido")
-    @JoinColumn(name = "ID_PEDIDO")
-    private Pedido pedido;
+	@JoinColumn(name = "ID_PEDIDO", referencedColumnName = "ID_PEDIDO")
+	@ManyToOne(optional = false , fetch = FetchType.EAGER)
+	private Pedido pedido;
 
 	@Column(name = "QTD")
 	private int qtd;

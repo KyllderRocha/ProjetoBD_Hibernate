@@ -1,5 +1,6 @@
 package model.entity;
 
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -11,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -33,10 +35,13 @@ public class Pedido {
 	
 	private Long cliente_id;
 	
-	@JoinColumn(name = "CLIENTE_ID_CLIENTE", referencedColumnName = "ID_CLIENTE")
+	@JoinColumn(name = "ID_CLIENTE", referencedColumnName = "ID_CLIENTE")
 	@ManyToOne(optional = false , fetch = FetchType.EAGER)
 	private Cliente cliente;
 
+	@OneToMany(mappedBy = "pedido")
+	private Collection<ItemPedido> itemPedidoCollection;
+	
 	public Long getId() {
 		return id;
 	}

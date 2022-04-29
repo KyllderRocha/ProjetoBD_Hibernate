@@ -21,7 +21,7 @@ public class Dependente {
 
 	private Long cliente_id;
 
-	@JoinColumn(name = "CLIENTE_ID_CLIENTE", referencedColumnName = "ID_CLIENTE")
+	@JoinColumn(name = "ID_CLIENTE", referencedColumnName = "ID_CLIENTE")
 	@ManyToOne(optional = false , fetch = FetchType.EAGER)
 	private Cliente cliente;
 	
