@@ -77,7 +77,7 @@ public class ClienteJuridicoDAOTest {
 				.umCliente()
 				.comNome("João da Silva")
 				.comEnderecoCep("55385000")
-				.comEnderecoCidade("Lajedo")
+				.comEnderecoCidade("Garanhuns")
 				.comEnderecoRua("Rua Andre Aluizio dornelas")
 				.comCnpj("13212322")
 				.comInscricaoEstadual("34324")

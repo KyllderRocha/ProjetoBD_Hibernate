@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 
 import dao.ClienteDAO;
 import dao.EMFactory;
+import dao.TestEMFactory;
 import model.entity.Cliente;
 
 public class ClienteService implements IServices<Cliente> {
@@ -14,13 +15,13 @@ public class ClienteService implements IServices<Cliente> {
 	private EntityManager entityManager;
 	
 	public ClienteService() {
-		this.clienteDao = new ClienteDAO(entityManager);
+		this.clienteDao = new ClienteDAO(this.entityManager);
 	}
 	
 	@Override
 	public Cliente adicionar(Cliente cliente) {
-		
 		entityManager = EMFactory.getInstance().getEntityManager();
+
 		entityManager.getTransaction().begin();
 		
 		try {
