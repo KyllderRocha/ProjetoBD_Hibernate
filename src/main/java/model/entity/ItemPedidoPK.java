@@ -6,29 +6,30 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
-@SuppressWarnings("serial")
 @Embeddable
 public class ItemPedidoPK implements Serializable{
 
+	private static final long serialVersionUID = -8154979449891885974L;
+
 	@Column(name = "ID_PRODUTO", nullable = false)
-	private int idProduto;
+	private Long idProduto;
 	
 	@Column(name = "ID_PEDIDO", nullable = false)
-	private int idPedido;
+	private Long idPedido;
 
-	public int getIdProduto() {
+	public Long getIdProduto() {
 		return idProduto;
 	}
 
-	public void setIdProduto(int idProduto) {
+	public void setIdProduto(Long idProduto) {
 		this.idProduto = idProduto;
 	}
 
-	public int getIdPedido() {
+	public Long getIdPedido() {
 		return idPedido;
 	}
 
-	public void setIdPedido(int idPedido) {
+	public void setIdPedido(Long idPedido) {
 		this.idPedido = idPedido;
 	}
 

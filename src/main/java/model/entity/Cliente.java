@@ -20,10 +20,12 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "TIPO")
+@Table(name = "CLIENTE")
 public abstract class Cliente implements Serializable {
 	
 	private static final long serialVersionUID = 3387642521978418140L;
@@ -39,21 +41,23 @@ public abstract class Cliente implements Serializable {
 	@Embedded
 	private Endereco enderecoCobranca;
 	
+	@ElementCollection
 	@OneToMany(mappedBy = "cliente")
-	private Collection<Pedido> pedidoCollection;
+	private List<Pedido> pedidoCollection = new ArrayList<Pedido>();
 	
-	@OneToMany(mappedBy = "cliente")
-	private Collection<Dependente> depedenteCollection;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "ID_CLIENTE", referencedColumnName = "CLIENTE_ID")
+	@ElementCollection
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Dependente> depedenteCollection = new ArrayList<Dependente>();
+	
+	@OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL)
 	private Carteira carteira;
 	
 	@ElementCollection
 	@CollectionTable(name = "EMAIL_CLIENTE",
 			joinColumns = { @JoinColumn(name = "ID_CLIENTE")})
 	@Column(name = "EMAIL")
-	private List<String> emails = new ArrayList<>();
+	private List<String> emails = new ArrayList<String>();
 	
 	public Long getId() {
 		return id;
@@ -79,19 +83,20 @@ public abstract class Cliente implements Serializable {
 		this.enderecoCobranca = enderecoCobranca;
 	}
 
-	public Collection<Pedido> getPedidoCollection() {
+	public List<Pedido> getPedidoCollection() {
 		return pedidoCollection;
 	}
 
-	public void setPedidoCollection(Collection<Pedido> pedidoCollection) {
+	public void setPedidoCollection(List<Pedido> pedidoCollection) {
 		this.pedidoCollection = pedidoCollection;
 	}
 
-	public Collection<Dependente> getDepedenteCollection() {
+	public List<Dependente> getDepedenteCollection() {
+		
 		return depedenteCollection;
 	}
 
-	public void setDepedenteCollection(Collection<Dependente> depedenteCollection) {
+	public void setDepedenteCollection(List<Dependente> depedenteCollection) {
 		this.depedenteCollection = depedenteCollection;
 	}
 	

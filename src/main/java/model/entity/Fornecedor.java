@@ -1,8 +1,10 @@
 package model.entity;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,7 +14,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "FORNECEDOR")
-public class Fornecedor {
+public class Fornecedor implements Serializable{
+
+	private static final long serialVersionUID = 500133879181970052L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +26,7 @@ public class Fornecedor {
 	@Column(name = "NOME", nullable = false, length = 255)
 	private String nome;
 	
+	@ElementCollection
 	@ManyToMany(mappedBy = "fornecedorCollection")
 	private Collection<Produto> produtoCollection;
 

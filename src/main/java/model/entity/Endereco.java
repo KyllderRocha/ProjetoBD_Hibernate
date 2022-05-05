@@ -1,10 +1,15 @@
 package model.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class Endereco {
+public class Endereco implements Serializable{
+
+	private static final long serialVersionUID = -8790835123222534193L;
+
 	@Column(name = "END_CEP", length = 8)
 	private String cep;
 	

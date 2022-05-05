@@ -7,8 +7,6 @@ import model.entity.Cliente;
 import model.entity.ClientePJ;
 import model.entity.Dependente;
 import model.entity.Endereco;
-import model.entity.Fisico;
-import model.entity.Juridico;
 
 public class ClienteJuridicoBuilder {
 	
@@ -66,7 +64,7 @@ public class ClienteJuridicoBuilder {
 	public ClientePJ build() {
 		ClientePJ cliente = new ClientePJ();
 		cliente.setNome(nome);
-		Collection<Dependente> dependenteBanco = cliente.getDepedenteCollection();
+		List<Dependente> dependenteBanco = cliente.getDepedenteCollection();
 		dependenteBanco.add(dependente);
 		cliente.setDepedenteCollection(dependenteBanco);
 		Endereco endereco = new Endereco();

@@ -19,6 +19,7 @@ import builder.PedidoBuilder;
 import model.entity.Cliente;
 import model.entity.Endereco;
 import model.entity.Fornecedor;
+import model.entity.ItemPedido;
 import model.entity.Pedido;
 import model.entity.Produto;
 public class PedidoDAOTest {
@@ -76,7 +77,7 @@ public class PedidoDAOTest {
 	public void deveSalvarPedido() {
 		Endereco endereco = new Endereco();
 		endereco.setCep("55385000");
-		endereco.setCidade("Lajedo");
+		endereco.setCidade("Garanhuns");
 		endereco.setRua("Rua André Aluizio dornelas");
 		
 		Cliente novoCliente = ClienteFisicoBuilder
@@ -84,7 +85,7 @@ public class PedidoDAOTest {
 				.comNome("João da Silva")
 				.comCpf("12096374480")
 				.comEnderecoCep("55385000")
-				.comEnderecoCidade("Lajedo")
+				.comEnderecoCidade("Garanhuns")
 				.comEnderecoRua("Rua Andre Aluizio dornelas")
 				.comRg("10252423")
 				.build();
@@ -99,6 +100,7 @@ public class PedidoDAOTest {
 		Produto novoProduto = new Produto();
 		novoProduto.setNome("Dolor Sit");
 		novoProduto.setValor(520.0);
+		novoProduto.setDescricao("Descrição");
 		novoProduto.setFornecedorCollection(fornecedores);
 		daoProduto.adiciona(novoProduto);
 
@@ -106,6 +108,14 @@ public class PedidoDAOTest {
 				.umPedido()
 				.comEnderecoData(endereco, new Date(), novoCliente)
 				.build();
+		
+		ItemPedido itemPedido = new ItemPedido();
+		itemPedido.setPedido(novoPedido);
+		itemPedido.setProduto(novoProduto);
+		
+		ArrayList<ItemPedido> itens = new ArrayList<ItemPedido>();
+		
+		novoPedido.setItemPedidoCollection(itens);
 		daoPedido.adiciona(novoPedido);
 		
 		assertNotNull(novoPedido.getId());
@@ -138,6 +148,7 @@ public class PedidoDAOTest {
 		Produto novoProduto = new Produto();
 		novoProduto.setNome("Dolor Sit");
 		novoProduto.setValor(320.0);
+		novoProduto.setDescricao("Descrição");
 		novoProduto.setFornecedorCollection(fornecedores);
 		daoProduto.adiciona(novoProduto);
 
@@ -186,6 +197,7 @@ public class PedidoDAOTest {
 		Produto novoProduto = new Produto();
 		novoProduto.setNome("Dolor Sit");
 		novoProduto.setValor(50.0);
+		novoProduto.setDescricao("Descrição");
 		novoProduto.setFornecedorCollection(fornecedores);
 		daoProduto.adiciona(novoProduto);
 
@@ -199,17 +211,15 @@ public class PedidoDAOTest {
 
 		daoPedido.remove(novoPedido);
 
-		manager.flush();
-
 		Pedido pedidoDoBanco = daoPedido.buscaPorId(pedidoId);
 		assertNull(pedidoDoBanco);
 	}
 	
 	@Test
-	public void deveAtualizarUmCliente() {
+	public void deveAtualizarUmPedido() {
 		Endereco endereco = new Endereco();
 		endereco.setCep("55385000");
-		endereco.setCidade("Lajedo");
+		endereco.setCidade("Garanhuns");
 		endereco.setRua("Rua André Aluizio dornelas");
 		
 		Cliente novoCliente = ClienteFisicoBuilder
@@ -217,7 +227,7 @@ public class PedidoDAOTest {
 				.comNome("João da Silva")
 				.comCpf("12096374480")
 				.comEnderecoCep("55385000")
-				.comEnderecoCidade("Lajedo")
+				.comEnderecoCidade("Garanhuns")
 				.comEnderecoRua("Rua Andre Aluizio dornelas")
 				.comRg("10252423")
 				.build();
@@ -232,6 +242,7 @@ public class PedidoDAOTest {
 		Produto novoProduto = new Produto();
 		novoProduto.setNome("Dolor Sit");
 		novoProduto.setValor(123.0);
+		novoProduto.setDescricao("Descrição");
 		novoProduto.setFornecedorCollection(fornecedores);
 		daoProduto.adiciona(novoProduto);
 
@@ -246,9 +257,7 @@ public class PedidoDAOTest {
 
 		novoPedido.setValor(2422.0);
 		daoPedido.atualiza(novoPedido);
-
-		manager.flush();
-
+		
 		Pedido clienteDoBanco = daoPedido.buscaPorId(pedidoId);
 		assertNotNull(clienteDoBanco);
 		assertEquals(2422, clienteDoBanco.getValor());

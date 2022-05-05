@@ -1,7 +1,10 @@
 package model.entity;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -17,7 +20,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "PEDIDO")
-public class Pedido {
+public class Pedido implements Serializable{
+
+	private static final long serialVersionUID = 1707873275528007093L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,14 +38,12 @@ public class Pedido {
 	@Embedded
 	private Endereco enderecoCobranca;
 	
-	private Long cliente_id;
-	
 	@JoinColumn(name = "ID_CLIENTE", referencedColumnName = "ID_CLIENTE")
 	@ManyToOne(optional = false , fetch = FetchType.EAGER)
 	private Cliente cliente;
 
 	@OneToMany(mappedBy = "pedido")
-	private Collection<ItemPedido> itemPedidoCollection;
+	private List<ItemPedido> itemPedidoCollection = new ArrayList<ItemPedido>();
 	
 	public Long getId() {
 		return id;
@@ -54,7 +57,7 @@ public class Pedido {
 		return valor;
 	}
 
-	public void setValor(Double valor) {
+	public void setValor(double valor) {
 		this.valor = valor;
 	}
 
@@ -74,14 +77,6 @@ public class Pedido {
 		this.enderecoCobranca = enderecoCobranca;
 	}
 
-	public Long getCliente_id() {
-		return cliente_id;
-	}
-
-	public void setCliente_id(Long cliente_id) {
-		this.cliente_id = cliente_id;
-	}
-
 	public Cliente getCliente() {
 		return cliente;
 	}
@@ -89,6 +84,14 @@ public class Pedido {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-		
+
+	public List<ItemPedido> getItemPedidoCollection() {
+		return itemPedidoCollection;
+	}
+
+	public void setItemPedidoCollection(List<ItemPedido> itemPedidoCollection) {
+		this.itemPedidoCollection = itemPedidoCollection;
+	}
+	
 	
 }

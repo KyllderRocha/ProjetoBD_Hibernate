@@ -4,10 +4,12 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
-@SuppressWarnings("serial")
 @Entity
 @DiscriminatorValue("juridico")
 public class ClientePJ extends Cliente{
+	
+	private static final long serialVersionUID = -5772485563088677445L;
+
 	@Column(name = "CNPJ", length = 50)
 	private String cnpj;
 

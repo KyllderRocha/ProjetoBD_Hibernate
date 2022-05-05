@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 
@@ -37,12 +38,13 @@ public class ProdutoDAOTest {
 	public void deveSalvarProduto() {
 		Fornecedor fornecedor = new Fornecedor();
 		fornecedor.setNome("Lorem Ipsum");
-		ArrayList<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
+		List<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
 		fornecedores.add(fornecedor);
 
 		Produto novoProduto = new Produto();
 		novoProduto.setNome("Dolor Sit");
 		novoProduto.setValor(520.0);
+		novoProduto.setDescricao("Descrição");
 		novoProduto.setFornecedorCollection(fornecedores);
 		dao.adiciona(novoProduto);
 		
@@ -54,12 +56,13 @@ public class ProdutoDAOTest {
 	public void deveEncontrarPeloId() {
 		Fornecedor fornecedor = new Fornecedor();
 		fornecedor.setNome("Lorem Ipsum");
-		ArrayList<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
+		List<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
 		fornecedores.add(fornecedor);
 
 		Produto novoProduto = new Produto();
 		novoProduto.setNome("Dolor Sit");
 		novoProduto.setValor(520.0);
+		novoProduto.setDescricao("Descrição");
 		novoProduto.setFornecedorCollection(fornecedores);
 		dao.adiciona(novoProduto);
 		
@@ -76,15 +79,16 @@ public class ProdutoDAOTest {
 	}
 	
 	@Test
-	public void deveDeletarUmCliente() {
+	public void deveDeletarUmProduto() {
 		Fornecedor fornecedor = new Fornecedor();
 		fornecedor.setNome("Lorem Ipsum");
-		ArrayList<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
+		List<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
 		fornecedores.add(fornecedor);
 
 		Produto novoProduto = new Produto();
 		novoProduto.setNome("Dolor Sit");
 		novoProduto.setValor(520.0);
+		novoProduto.setDescricao("Descrição");
 		novoProduto.setFornecedorCollection(fornecedores);
 		dao.adiciona(novoProduto);
 
@@ -99,15 +103,16 @@ public class ProdutoDAOTest {
 	}
 	
 	@Test
-	public void deveAtualizarUmCliente() {
+	public void deveAtualizarUmProduto() {
 		Fornecedor fornecedor = new Fornecedor();
 		fornecedor.setNome("Lorem Ipsum");
-		ArrayList<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
+		List<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
 		fornecedores.add(fornecedor);
 
 		Produto novoProduto = new Produto();
 		novoProduto.setNome("Dolor Sit");
 		novoProduto.setValor(520.0);
+		novoProduto.setDescricao("Descrição");
 		novoProduto.setFornecedorCollection(fornecedores);
 		dao.adiciona(novoProduto);
 
@@ -116,9 +121,8 @@ public class ProdutoDAOTest {
 		novoProduto.setValor(333.0);
 		dao.atualiza(novoProduto);
 
-		manager.flush();
-
 		Produto produtoDoBanco = dao.buscaPorId(produtoId);
+
 		assertNotNull(produtoDoBanco);
 		assertEquals(333, produtoDoBanco.getValor());
 	}

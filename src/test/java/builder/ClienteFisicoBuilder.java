@@ -1,5 +1,6 @@
 package builder;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -11,8 +12,6 @@ import model.entity.Cliente;
 import model.entity.ClienteFisico;
 import model.entity.Dependente;
 import model.entity.Endereco;
-import model.entity.Fisico;
-import model.entity.Dependente;
 
 public class ClienteFisicoBuilder {
 	
@@ -22,7 +21,7 @@ public class ClienteFisicoBuilder {
 	private String enderecoCidade;
 	private String rg;
 	private String cpf;
-	private Dependente dependente;
+	private List<Dependente> dependente = new ArrayList<Dependente>();
 	
 	private ClienteFisicoBuilder() {}
 	
@@ -60,7 +59,7 @@ public class ClienteFisicoBuilder {
 	}
 	
 	public ClienteFisicoBuilder comDependente(Dependente dependente) {
-		this.dependente = dependente;
+		this.dependente.add(dependente);
 		return this;
 	}
 	
@@ -68,8 +67,8 @@ public class ClienteFisicoBuilder {
 	public ClienteFisico build() {
 		ClienteFisico cliente = new ClienteFisico();
 		cliente.setNome(nome);
-		Collection<Dependente> dependenteBanco = cliente.getDepedenteCollection();
-		dependenteBanco.add(dependente);
+		List<Dependente> dependenteBanco = cliente.getDepedenteCollection();
+		dependenteBanco.addAll(dependente);
 		cliente.setDepedenteCollection(dependenteBanco);
 		Endereco endereco = new Endereco();
 		endereco.setRua(enderecoRua);

@@ -1,6 +1,7 @@
 package model.entity;
 
-import javax.persistence.CascadeType;
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +13,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "CARTEIRA")
-public class Carteira {
+public class Carteira implements Serializable{
+	
+	private static final long serialVersionUID = 1517570622400485208L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID_CARTEIRA")
@@ -23,11 +27,9 @@ public class Carteira {
 	
 	@Column(name = "PONTOS", nullable = false)
 	private int pontos;
-	
-	private Long cliente_id;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "CLIENTE_ID", referencedColumnName = "ID_CLIENTE")
+	@OneToOne
+	@JoinColumn(name = "ID_CLIENTE", referencedColumnName = "ID_CLIENTE")
 	private Cliente cliente;
 
 	public Long getId() {
@@ -52,14 +54,6 @@ public class Carteira {
 
 	public void setPontos(int pontos) {
 		this.pontos = pontos;
-	}
-
-	public Long getCliente_id() {
-		return cliente_id;
-	}
-
-	public void setCliente_id(Long cliente_id) {
-		this.cliente_id = cliente_id;
 	}
 
 	public Cliente getCliente() {

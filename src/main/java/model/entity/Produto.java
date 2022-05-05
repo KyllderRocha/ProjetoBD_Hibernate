@@ -1,9 +1,12 @@
 package model.entity;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
-
+import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,7 +19,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "PRODUTO")
-public class Produto {
+public class Produto implements Serializable{
+
+	private static final long serialVersionUID = -1461072103099964794L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,10 +45,12 @@ public class Produto {
 					name = "PRODUTO_ID_FORNECEDOR",
 					referencedColumnName = "ID_FORNECEDOR")})
 	@ManyToMany
-	private Collection<Fornecedor> fornecedorCollection;
+	@ElementCollection
+	private List<Fornecedor> fornecedorCollection = new ArrayList<Fornecedor>();
 	
 	@OneToMany(mappedBy = "produto")
-	private Collection<ItemPedido> itemPedidoCollection;
+	@ElementCollection
+	private List<ItemPedido> itemPedidoCollection = new ArrayList<ItemPedido>();
 
 	public Long getId() {
 		return id;
@@ -77,11 +84,11 @@ public class Produto {
 		this.valor = valor;
 	}
 
-	public Collection<Fornecedor> getFornecedorCollection() {
+	public List<Fornecedor> getFornecedorCollection() {
 		return fornecedorCollection;
 	}
 
-	public void setFornecedorCollection(Collection<Fornecedor> fornecedorCollection) {
+	public void setFornecedorCollection(List<Fornecedor> fornecedorCollection) {
 		this.fornecedorCollection = fornecedorCollection;
 	}
 	

@@ -1,26 +1,29 @@
 package model.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "PEDIDO_PRODUTO")
-public class ItemPedido {
+public class ItemPedido implements Serializable{
 		
+	private static final long serialVersionUID = -9136200406819393177L;
+
 	@EmbeddedId
 	protected ItemPedidoPK itemPedidoPK;
 		
-	@JoinColumn(name = "ID_PRODUTO", referencedColumnName = "ID_PRODUTO")
+	//@JoinColumn(name = "ID_PRODUTO", referencedColumnName = "ID_PRODUTO")
 	@ManyToOne(optional = false , fetch = FetchType.EAGER)
 	private Produto produto;
 
-	@JoinColumn(name = "ID_PEDIDO", referencedColumnName = "ID_PEDIDO")
+	//@JoinColumn(name = "ID_PEDIDO", referencedColumnName = "ID_PEDIDO")
 	@ManyToOne(optional = false , fetch = FetchType.EAGER)
 	private Pedido pedido;
 

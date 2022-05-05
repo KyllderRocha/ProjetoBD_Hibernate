@@ -1,37 +1,30 @@
 package model.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "DEPENDENTE")
-public class Dependente {
+public class Dependente implements Serializable{
 
-	@Id
-	@Column(name = "RG", nullable = false, length = 50)
-	private String rg;
-	
+	private static final long serialVersionUID = -1203024531173604962L;
+
+	@EmbeddedId
+	protected DependentePK dependentePK = new DependentePK();
+		
 	@Column(name = "NOME", nullable = false, length = 255)
-	private String nome;
+	private String nome;	
 
-	private Long cliente_id;
-
-	@JoinColumn(name = "ID_CLIENTE", referencedColumnName = "ID_CLIENTE")
+	//@JoinColumn(name = "ID_CLIENTE", referencedColumnName = "ID_CLIENTE")
 	@ManyToOne(optional = false , fetch = FetchType.EAGER)
 	private Cliente cliente;
-	
-	public Long getCliente_id() {
-		return cliente_id;
-	}
-
-	public void setCliente_id(Long cliente_id) {
-		this.cliente_id = cliente_id;
-	}
 
 	public Cliente getCliente() {
 		return cliente;
@@ -41,20 +34,20 @@ public class Dependente {
 		this.cliente = cliente;
 	}
 
-	public String getRg() {
-		return rg;
-	}
-
-	public void setRg(String rg) {
-		this.rg = rg;
-	}
-
 	public String getNome() {
 		return nome;
 	}
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getRg() {
+		return dependentePK.getRg();
+	}
+
+	public void setRg(String rg) {
+		this.dependentePK.setRg(rg);
 	}
 
 	

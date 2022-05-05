@@ -40,7 +40,7 @@ public class ClienteFisicoDAOTest {
 				.comNome("João da Silva")
 				.comCpf("12096374480")
 				.comEnderecoCep("55385000")
-				.comEnderecoCidade("Lajedo")
+				.comEnderecoCidade("Garanhuns")
 				.comEnderecoRua("Rua Andre Aluizio dornelas")
 				.comRg("10252423")
 				.build();
@@ -60,13 +60,17 @@ public class ClienteFisicoDAOTest {
 				.comNome("João da Silva")
 				.comCpf("12096374480")
 				.comEnderecoCep("55385000")
-				.comEnderecoCidade("Lajedo")
+				.comEnderecoCidade("Garanhuns")
 				.comEnderecoRua("Rua Andre Aluizio dornelas")
 				.comRg("10252423")
 				.comDependente(dependente)
 				.build();
+		dependente.setCliente(novoCliente);
 		dao.adiciona(novoCliente);
-		assertNotNull(novoCliente.getId());
+		
+
+		Cliente cleinteDoBanco = dao.buscaPorId(novoCliente.getId());
+		assertEquals(cleinteDoBanco.getDepedenteCollection().get(0).getNome(), "Filho");
 	}
 	
 	
@@ -77,7 +81,7 @@ public class ClienteFisicoDAOTest {
 				.comNome("João da Silva")
 				.comCpf("12096374480")
 				.comEnderecoCep("55385000")
-				.comEnderecoCidade("Lajedo")
+				.comEnderecoCidade("Garanhuns")
 				.comEnderecoRua("Rua Andre Aluizio dornelas")
 				.comRg("10252423")
 				.build();
@@ -101,7 +105,7 @@ public class ClienteFisicoDAOTest {
 				.comNome("João da Silva")
 				.comCpf("12096374480")
 				.comEnderecoCep("55385000")
-				.comEnderecoCidade("Lajedo")
+				.comEnderecoCidade("Garanhuns")
 				.comEnderecoRua("Rua Andre Aluizio dornelas")
 				.comRg("10252423")
 				.build();
@@ -125,7 +129,7 @@ public class ClienteFisicoDAOTest {
 				.comNome("João da Silva")
 				.comCpf("12096374480")
 				.comEnderecoCep("55385000")
-				.comEnderecoCidade("Lajedo")
+				.comEnderecoCidade("Garanhuns")
 				.comEnderecoRua("Rua Andre Aluizio dornelas")
 				.comRg("10252423")
 				.build();
