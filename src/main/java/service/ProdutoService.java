@@ -13,14 +13,14 @@ public class ProdutoService implements IServices<Produto> {
 	private ProdutoDAO produtoDao;
 	private EntityManager entityManager;
 	
-	public ProdutoService() {
+	public ProdutoService(EntityManager entityManager) {
+		this.entityManager = entityManager;
 		this.produtoDao = new ProdutoDAO(entityManager);
 	}
 	
 	@Override
 	public Produto adicionar(Produto produto) {
 		
-		entityManager = EMFactory.getInstance().getEntityManager();
 		entityManager.getTransaction().begin();
 		
 		try {

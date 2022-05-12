@@ -8,10 +8,6 @@ import model.entity.Endereco;
 import model.entity.Pedido;
 import model.entity.Produto;
 
-/**
- * @author Mikaelbr073
- *
- */
 public class PedidoBuilder {
 	
 	private Cliente cliente;

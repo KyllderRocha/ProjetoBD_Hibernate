@@ -2,10 +2,6 @@ package builder;
 
 import model.entity.Produto;
 
-/**
- * @author Mikaelbr073
- *
- */
 public class ProdutoBuilder {
 
 	private String nome;

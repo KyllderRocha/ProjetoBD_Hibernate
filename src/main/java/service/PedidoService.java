@@ -16,7 +16,8 @@ public class PedidoService implements IServices<Pedido> {
 	private PedidoDAO pedidoDao;
 	private EntityManager entityManager;
 	
-	public PedidoService() {
+	public PedidoService(EntityManager entityManager) {
+		this.entityManager = entityManager;
 		this.carteiraDao = new CarteiraDAO(entityManager);
 		this.pedidoDao = new PedidoDAO(entityManager);
 	}
@@ -24,7 +25,6 @@ public class PedidoService implements IServices<Pedido> {
 	@Override
 	public Pedido adicionar(Pedido pedido) {
 		
-		entityManager = EMFactory.getInstance().getEntityManager();
 		entityManager.getTransaction().begin();
 		
 		try {
