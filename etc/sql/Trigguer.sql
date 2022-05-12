@@ -9,6 +9,6 @@ CREATE FUNCTION calcular_valor_total() RETURNS trigger AS $calcular$
 $calcular$ LANGUAGE plpgsql;
 
 CREATE TRIGGER calcular_valor_total_pedido
-    AFTER INSERT OR UPDATE ON pedido_produto
+    AFTER INSERT OR UPDATE OR DELETE ON pedido_produto
 	FOR EACH ROW
 	EXECUTE PROCEDURE calcular_valor_total();

@@ -50,7 +50,7 @@ public class PedidoDAOTest {
 	public void deveSalvarPedidoComEnderecoData() {
 		Endereco endereco = new Endereco();
 		endereco.setCep("55385000");
-		endereco.setCidade("Lajedo");
+		endereco.setCidade("Garanhuns");
 		endereco.setRua("Rua André Aluizio dornelas");
 		
 		Cliente novoCliente = ClienteFisicoBuilder
@@ -125,7 +125,7 @@ public class PedidoDAOTest {
 	public void deveEncontrarPeloId() {
 		Endereco endereco = new Endereco();
 		endereco.setCep("55385000");
-		endereco.setCidade("Lajedo");
+		endereco.setCidade("Garanhuns");
 		endereco.setRua("Rua André Aluizio dornelas");
 		
 		Cliente novoCliente = ClienteFisicoBuilder
@@ -174,7 +174,7 @@ public class PedidoDAOTest {
 	public void deveDeletarUmPedido() {
 		Endereco endereco = new Endereco();
 		endereco.setCep("55385000");
-		endereco.setCidade("Lajedo");
+		endereco.setCidade("Garanhuns");
 		endereco.setRua("Rua André Aluizio dornelas");
 		
 		Cliente novoCliente = ClienteFisicoBuilder

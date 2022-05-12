@@ -1,8 +1,11 @@
 package service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+
+import java.util.List;
 
 import javax.persistence.EntityManager;
 
@@ -11,9 +14,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import builder.ClienteFisicoBuilder;
-import dao.ClienteDAO;
 import dao.TestEMFactory;
 import model.entity.Cliente;
+import model.entity.ClienteFisico;
+import model.entity.Dependente;
+import model.entity.Endereco;
 
 public class ClienteServiceTest {
 
@@ -29,8 +34,7 @@ public class ClienteServiceTest {
 	
 	@AfterEach
 	public void after() {
-		manager.getTransaction().rollback();
-		manager.close();
+		
 	}
 	
 	@Test
@@ -45,7 +49,12 @@ public class ClienteServiceTest {
 				.comRg("10252423")
 				.build();
 		service.adicionar(novoCliente);
-		assertNotNull(novoCliente.getId());
+		
+		
+		
+	    Cliente clienteDoBanco = service.obterPorId(novoCliente.getId());
+	    
+	    assertNotNull(clienteDoBanco);
 	}
 	
 	@Test
@@ -90,7 +99,6 @@ public class ClienteServiceTest {
 		
 	    service.deletarPorId(novoCliente);
 	    
-	    
 	    Cliente clienteDoBanco = service.obterPorId(idCliente);
 	    assertNull(clienteDoBanco);
 	}
@@ -110,11 +118,11 @@ public class ClienteServiceTest {
 		
 		Long idCliente = novoCliente.getId();
 		
-		novoCliente.setNome("Jo�o Ferreira da Silva");
+		novoCliente.setNome("João Ferreira da Silva");
 	    service.atualizar(novoCliente);
 	    
 	    Cliente clienteDoBanco = service.obterPorId(idCliente);
 	    assertNotNull(clienteDoBanco);
-	    assertEquals("Jo�o Ferreira da Silva", clienteDoBanco.getNome());
+	    assertEquals("João Ferreira da Silva", clienteDoBanco.getNome());
 	}
 }

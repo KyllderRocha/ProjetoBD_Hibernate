@@ -20,8 +20,8 @@ public class ClienteService implements IServices<Cliente> {
 	
 	@Override
 	public Cliente adicionar(Cliente cliente) {
-		
 		entityManager = EMFactory.getInstance().getEntityManager();
+
 		entityManager.getTransaction().begin();
 		
 		try {
