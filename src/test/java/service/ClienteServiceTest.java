@@ -18,13 +18,12 @@ import model.entity.Cliente;
 public class ClienteServiceTest {
 
 	EntityManager manager;
-	Cliente cliente;
 	ClienteService service;
 	
 	@BeforeEach
 	public void before() {
 		manager = TestEMFactory.getInstance().getEntityManager();
-		service = new ClienteService();
+		service = new ClienteService(manager);
 		manager.getTransaction().begin();
 	}
 	
@@ -41,7 +40,7 @@ public class ClienteServiceTest {
 				.comNome("João da Silva")
 				.comCpf("12096374480")
 				.comEnderecoCep("55385000")
-				.comEnderecoCidade("Lajedo")
+				.comEnderecoCidade("Garanhuns")
 				.comEnderecoRua("Rua Andre Aluizio dornelas")
 				.comRg("10252423")
 				.build();
@@ -56,7 +55,7 @@ public class ClienteServiceTest {
 				.comNome("João da Silva")
 				.comCpf("12096374480")
 				.comEnderecoCep("55385000")
-				.comEnderecoCidade("Lajedo")
+				.comEnderecoCidade("Garanhuns")
 				.comEnderecoRua("Rua Andre Aluizio dornelas")
 				.comRg("10252423")
 				.build();
@@ -80,7 +79,7 @@ public class ClienteServiceTest {
 				.comNome("João da Silva")
 				.comCpf("12096374480")
 				.comEnderecoCep("55385000")
-				.comEnderecoCidade("Lajedo")
+				.comEnderecoCidade("Garanhuns")
 				.comEnderecoRua("Rua Andre Aluizio dornelas")
 				.comRg("10252423")
 				.build();
@@ -91,7 +90,6 @@ public class ClienteServiceTest {
 		
 	    service.deletarPorId(novoCliente);
 	    
-	    manager.flush();
 	    
 	    Cliente clienteDoBanco = service.obterPorId(idCliente);
 	    assertNull(clienteDoBanco);
@@ -104,7 +102,7 @@ public class ClienteServiceTest {
 				.comNome("João da Silva")
 				.comCpf("12096374480")
 				.comEnderecoCep("55385000")
-				.comEnderecoCidade("Lajedo")
+				.comEnderecoCidade("Garanhuns")
 				.comEnderecoRua("Rua Andre Aluizio dornelas")
 				.comRg("10252423")
 				.build();
@@ -114,8 +112,6 @@ public class ClienteServiceTest {
 		
 		novoCliente.setNome("Jo�o Ferreira da Silva");
 	    service.atualizar(novoCliente);
-	    
-	    manager.flush();
 	    
 	    Cliente clienteDoBanco = service.obterPorId(idCliente);
 	    assertNotNull(clienteDoBanco);

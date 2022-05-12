@@ -13,7 +13,8 @@ public class ClienteService implements IServices<Cliente> {
 	private ClienteDAO clienteDao;
 	private EntityManager entityManager;
 	
-	public ClienteService() {
+	public ClienteService(EntityManager entityManager) {
+		this.entityManager = entityManager;
 		this.clienteDao = new ClienteDAO(entityManager);
 	}
 	
